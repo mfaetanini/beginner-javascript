@@ -1,29 +1,62 @@
 // Make a div
+const div = document.createElement('div');
 
 // add a class of wrapper to it
-
+div.classList.add('wrapper');
 // put it into the body
-
+document.body.appendChild(div);
 // make an unordered list
-
 // add three list items with the words "one, two three" in them
+const ul = `<ul>
+  <li>one</li>
+  <li>two</li>
+  <li>three</li>
+</ul>`;
 // put that list into the above wrapper
-
+div.innerHTML = ul;
 // create an image
+const img = document.createElement('img');
 
 // set the source to an image
+img.src ='https://picsum.photos/500';
 // set the width to 250
+img.width = '250';
 // add a class of cute
+img.classList.add('cute');
 // add an alt of Cute Puppy
+img.alt = 'Cute Puppy'
 // Append that image to the wrapper
-
+div.appendChild(img);
 // with HTML string, make a div, with two paragraphs inside of it
+string = `<div class="myDiv">
+            <p>Paragraph One</p>
+            <p>Paragraph Two</p>
+          </div>`
 // put this div before the unordered list from above
 
+const myList = document.querySelector('ul');
+console.log(myList);
+myList.insertAdjacentHTML("beforebegin",string);
 // add a class to the second paragraph called warning
+const myDiv = div.querySelector('.myDiv');
+console.log(myDiv);
+
+myDiv.children[1].classList.add('warning')
 // remove the first paragraph
+myDiv.children[0].remove();
 
 // create a function called generatePlayerCard that takes in three arguments: name, age, and height
+function generatePlayerCard(name, age, height){
+    const dogYears = age * 7;
+    const player = `<div class="playerCard">
+                        <h2>${name}</h2>
+                        <p>Their height is ${height} and they are ${age} years old. In dog years, this person would be ${dogYears}. That would be a tall dog!</p>
+                        <button class="delete" type="button">&times; Delete</button>
+
+                        </div>`
+    return player
+
+};
 
 // have that function return html that looks like this:
 // <div class="playerCard">
@@ -32,13 +65,33 @@
 // </div>
 
 // make a new div with a class of cards
-
+const cards = document.createElement('div');
+cards.classList.add('cards');
 // Have that function make 4 cards
+let cardsHTML = generatePlayerCard('Mark',32, 150);
+cardsHTML += generatePlayerCard('Sarah',29, 120);
+cardsHTML += generatePlayerCard('Michael',1.5, 60);
+cardsHTML += generatePlayerCard('Achilles',4, 80);
 
+cards.innerHTML = cardsHTML;
 // append those cards to the div
 // put the div into the DOM just before the wrapper element
+
+div.insertAdjacentElement('beforebegin', cards);
+
+
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
+function deleteCard(){
+    
+}
+
 // select all the buttons!
-// make out delete function
-// loop over them and attach a listener
+const buttons = document.querySelectorAll('.delete');
+function deleteCard(event) {
+    const buttonThatGotClicked = event.currentTarget;
+    // buttonThatGotClicked.parentElement.remove();
+    buttonThatGotClicked.closest('.playerCard').remove();
+  }
+  // loop over them and attach a listener
+  buttons.forEach(button => button.addEventListener('click', deleteCard));

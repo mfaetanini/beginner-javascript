@@ -1,6 +1,18 @@
 const butts = document.querySelector('.butts');
 const coolButton = document.querySelector('.cool');
 
+
+function handleClick() {
+
+  console.log ('the button was clicked!!')
+
+}
+
+butts.addEventListener('click', handleClick);
+
+
+
+/*
 function handleClick() {
   console.log('🐛 IT GOT CLICKED!!!');
 }
@@ -51,3 +63,4 @@ photoEl.addEventListener('mouseenter', e => {
   console.log(e.currentTarget);
   console.log(this);
 });
+*/
